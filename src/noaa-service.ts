@@ -140,9 +140,38 @@ export class NoaaService {
    * Get list of stations
    */
   async getStations(params: Record<string, any>): Promise<any> {
-    const { type, ...rest } = params;
+    const { 
+      type, 
+      name, 
+      lat_min, 
+      lat_max, 
+      lon_min, 
+      lon_max, 
+      state, 
+      limit, 
+      offset, 
+      sort_by, 
+      sort_order, 
+      ...rest 
+    } = params;
+    
     const endpoint = '/stations.' + (rest.format || 'json');
-    const queryParams = type ? { type, ...rest } : rest;
+    
+    // Build query parameters with all the filters
+    const queryParams: Record<string, any> = { ...rest };
+    
+    // Add filters only if they are defined
+    if (type) queryParams.type = type;
+    if (name) queryParams.name = name;
+    if (lat_min !== undefined) queryParams.lat_min = lat_min;
+    if (lat_max !== undefined) queryParams.lat_max = lat_max;
+    if (lon_min !== undefined) queryParams.lon_min = lon_min;
+    if (lon_max !== undefined) queryParams.lon_max = lon_max;
+    if (state) queryParams.state = state;
+    if (limit !== undefined) queryParams.limit = limit;
+    if (offset !== undefined) queryParams.offset = offset;
+    if (sort_by) queryParams.sort_by = sort_by;
+    if (sort_order) queryParams.sort_order = sort_order;
     
     return this.fetchMetadataApi(endpoint, queryParams);
   }

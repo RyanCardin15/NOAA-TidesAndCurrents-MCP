@@ -25,3 +25,7 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo 
+
+
+
+.cursor

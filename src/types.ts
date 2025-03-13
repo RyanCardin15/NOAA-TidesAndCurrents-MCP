@@ -101,6 +101,16 @@ export const GetStationsSchema = z.object({
   type: z.string().optional().describe('Station type (waterlevels, currents, etc.)'),
   units: UnitsSchema,
   format: z.enum(['json', 'xml']).optional().describe('Output format (json, xml)'),
+  name: z.string().optional().describe('Filter stations by name (partial match)'),
+  lat_min: z.number().optional().describe('Minimum latitude boundary'),
+  lat_max: z.number().optional().describe('Maximum latitude boundary'),
+  lon_min: z.number().optional().describe('Minimum longitude boundary'),
+  lon_max: z.number().optional().describe('Maximum longitude boundary'),
+  state: z.string().optional().describe('Filter stations by state code (e.g., CA, NY)'),
+  limit: z.number().optional().describe('Maximum number of stations to return'),
+  offset: z.number().optional().describe('Number of stations to skip for pagination'),
+  sort_by: z.enum(['name', 'id', 'state']).optional().describe('Field to sort results by'),
+  sort_order: z.enum(['asc', 'desc']).optional().describe('Sort order (ascending or descending)'),
 });
 
 // Station Details Schema

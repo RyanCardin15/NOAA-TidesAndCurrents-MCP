@@ -10,6 +10,8 @@ This is an MCP (Model Context Protocol) server that provides tools for interacti
 - Current predictions
 - Station metadata retrieval
 - Wind, air temperature, water temperature, and other meteorological data
+- Moon phase information (past, present, and future)
+- Sun rise/set and position data (past, present, and future)
 
 ## Prerequisites
 
@@ -149,6 +151,67 @@ npx fastmcp inspect dist/index.js
     - `station` (string) - Station ID
     - `units` (string, optional) - Units to use ("english" or "metric")
     - `format` (string, optional) - Output format (json, xml)
+
+#### Moon Phase Information
+
+- `get_moon_phase` - Get moon phase information for a specific date
+  - Parameters:
+    - `date` (string, optional) - Date to get moon phase for (YYYY-MM-DD format). Defaults to current date.
+    - `latitude` (number, optional) - Latitude for location-specific calculations
+    - `longitude` (number, optional) - Longitude for location-specific calculations
+    - `format` (string, optional) - Output format (json or text)
+
+- `get_moon_phases_range` - Get moon phase information for a date range
+  - Parameters:
+    - `start_date` (string) - Start date (YYYY-MM-DD format)
+    - `end_date` (string) - End date (YYYY-MM-DD format)
+    - `latitude` (number, optional) - Latitude for location-specific calculations
+    - `longitude` (number, optional) - Longitude for location-specific calculations
+    - `format` (string, optional) - Output format (json or text)
+
+- `get_next_moon_phase` - Get the next occurrence(s) of a specific moon phase
+  - Parameters:
+    - `phase` (string) - Moon phase to find (New Moon, First Quarter, Full Moon, Last Quarter)
+    - `date` (string, optional) - Starting date (YYYY-MM-DD format). Defaults to current date.
+    - `count` (number, optional) - Number of occurrences to return. Defaults to 1.
+    - `format` (string, optional) - Output format (json or text)
+
+#### Sun Rise/Set Information
+
+- `get_sun_times` - Get sun rise/set and other sun event times for a specific date and location
+  - Parameters:
+    - `date` (string, optional) - Date to get sun times for (YYYY-MM-DD format). Defaults to current date.
+    - `latitude` (number) - Latitude for location-specific calculations
+    - `longitude` (number) - Longitude for location-specific calculations
+    - `format` (string, optional) - Output format (json or text)
+    - `timezone` (string, optional) - Timezone for the results. Defaults to UTC.
+
+- `get_sun_times_range` - Get sun rise/set and other sun event times for a date range and location
+  - Parameters:
+    - `start_date` (string) - Start date (YYYY-MM-DD format)
+    - `end_date` (string) - End date (YYYY-MM-DD format)
+    - `latitude` (number) - Latitude for location-specific calculations
+    - `longitude` (number) - Longitude for location-specific calculations
+    - `format` (string, optional) - Output format (json or text)
+    - `timezone` (string, optional) - Timezone for the results. Defaults to UTC.
+
+- `get_sun_position` - Get sun position information for a specific date, time, and location
+  - Parameters:
+    - `date` (string, optional) - Date to get sun position for (YYYY-MM-DD format). Defaults to current date.
+    - `time` (string, optional) - Time to get sun position for (HH:MM:SS format). Defaults to current time.
+    - `latitude` (number) - Latitude for location-specific calculations
+    - `longitude` (number) - Longitude for location-specific calculations
+    - `format` (string, optional) - Output format (json or text)
+
+- `get_next_sun_event` - Get the next occurrence(s) of a specific sun event
+  - Parameters:
+    - `event` (string) - Sun event to find (sunrise, sunset, dawn, dusk, solarNoon, etc.)
+    - `date` (string, optional) - Starting date (YYYY-MM-DD format). Defaults to current date.
+    - `latitude` (number) - Latitude for location-specific calculations
+    - `longitude` (number) - Longitude for location-specific calculations
+    - `count` (number, optional) - Number of occurrences to return. Defaults to 1.
+    - `format` (string, optional) - Output format (json or text)
+    - `timezone` (string, optional) - Timezone for the results. Defaults to UTC.
 
 ## API Documentation
 
