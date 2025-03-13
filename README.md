@@ -1,3 +1,6 @@
+<a href="https://glama.ai/mcp/servers/ro2rz2c734">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/ro2rz2c734/badge" />
+
 # NOAA Tides and Currents MCP Server
 
 This is an MCP (Model Context Protocol) server that provides tools for interacting with the NOAA Tides and Currents API using the FastMCP framework.
