@@ -3,6 +3,8 @@
 
 # NOAA Tides and Currents MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@RyanCardin15/tidesandcurrents)](https://smithery.ai/server/@RyanCardin15/tidesandcurrents)
+
 This is an MCP (Model Context Protocol) server that provides tools for interacting with the NOAA Tides and Currents API using the FastMCP framework.
 
 ## Features
@@ -23,6 +25,15 @@ This is an MCP (Model Context Protocol) server that provides tools for interacti
 
 ## Setup
 
+### Installing via Smithery
+
+To install NOAA Tides and Currents for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@RyanCardin15/tidesandcurrents):
+
+```bash
+npx -y @smithery/cli install @RyanCardin15/tidesandcurrents --client claude
+```
+
+### Manual Installation
 1. Clone this repository
 2. Install dependencies
 
