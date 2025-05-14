@@ -71,6 +71,12 @@ npx fastmcp inspect dist/index.js
 
 ### Available Tools
 
+#### Parameter Definitions
+
+- `get_parameter_definitions` - Get information about valid parameter values for NOAA API requests
+  - Parameters:
+    - `parameter` (string, optional) - Parameter type to get information about (time_zones, datums, units, tide_intervals, current_intervals, velocity_types, products, station_types, date_formats, output_formats). If not provided, returns information about all parameter types.
+
 #### Water Levels
 
 - `get_water_levels` - Get water level data for a station
