@@ -1,9 +1,6 @@
-<a href="https://glama.ai/mcp/servers/ro2rz2c734">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/ro2rz2c734/badge" />
-
 # LocalTides MCP Server
 
-[![smithery badge](https://smithery.ai/badge/@RyanCardin15/tidesandcurrents)](https://smithery.ai/server/@RyanCardin15/tidesandcurrents)
+[![smithery badge](https://smithery.ai/badge/@RyanCardin15/noaa-tidesandcurrents-mcp)](https://smithery.ai/server/@RyanCardin15/noaa-tidesandcurrents-mcp)
 
 This is an MCP (Model Context Protocol) server that provides tools for interacting with the NOAA Tides and Currents API using the FastMCP framework.
 
@@ -230,3 +227,8 @@ NOAA Tides and Currents API documentation can be found at:
 ## License
 
 MIT 
+
+
+<a href="https://glama.ai/mcp/servers/ro2rz2c734">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/ro2rz2c734/badge" />
+
