@@ -5,21 +5,9 @@ const DATA_API_BASE_URL = 'https://api.tidesandcurrents.noaa.gov/api/prod/datage
 const METADATA_API_BASE_URL = 'https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi';
 
 /**
- * Configuration options for the NOAA service
- */
-export interface NoaaConfig {
-  applicationName?: string;
-}
-
-/**
  * Service for interacting with NOAA Tides and Currents APIs
  */
 export class NoaaService {
-  private config: NoaaConfig;
-
-  constructor(config: NoaaConfig = {}) {
-    this.config = config;
-  }
 
   /**
    * Build parameters for the API request
@@ -27,11 +15,6 @@ export class NoaaService {
    * @returns URL-encoded parameters string
    */
   private buildParams(params: Record<string, any>): string {
-    // Add application name if provided in config
-    if (this.config.applicationName) {
-      params.application = this.config.applicationName;
-    }
-
     // Remove undefined and null values
     const filteredParams = Object.entries(params)
       .filter(([_, value]) => value !== undefined && value !== null)

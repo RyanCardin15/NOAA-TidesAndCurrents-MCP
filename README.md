@@ -1,7 +1,7 @@
 <a href="https://glama.ai/mcp/servers/ro2rz2c734">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/ro2rz2c734/badge" />
 
-# NOAA Tides and Currents MCP Server
+# LocalTides MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@RyanCardin15/tidesandcurrents)](https://smithery.ai/server/@RyanCardin15/tidesandcurrents)
 
@@ -41,26 +41,13 @@ npx -y @smithery/cli install @RyanCardin15/tidesandcurrents --client claude
 npm install
 ```
 
-3. Create a `.env` file based on the `.env.example` file:
-
-```
-# Server Configuration
-PORT=3000
-
-# Transport type (stdio or sse)
-TRANSPORT_TYPE=stdio
-
-# NOAA API application name for identification (recommended)
-APPLICATION_NAME=YourAppName
-```
-
-4. Build the TypeScript code
+3. Build the TypeScript code
 
 ```bash
 npm run build
 ```
 
-5. Start the server
+4. Start the server
 
 ```bash
 npm start
@@ -233,22 +220,6 @@ NOAA Tides and Currents API documentation can be found at:
 - CO-OPS Data API: https://api.tidesandcurrents.noaa.gov/api/prod/
 - CO-OPS Metadata API: https://api.tidesandcurrents.noaa.gov/mdapi/prod/
 - CO-OPS Derived Product API: https://api.tidesandcurrents.noaa.gov/dpapi/prod/
-
-## About FastMCP
-
-FastMCP is a TypeScript framework for building MCP servers capable of handling client sessions. It provides:
-
-- Simple Tool, Resource, Prompt definition
-- Sessions
-- Image content
-- Logging
-- Error handling
-- SSE
-- Progress notifications
-- Typed server events
-- And more
-
-Learn more at: https://github.com/punkpeye/fastmcp
 
 ## License
 

@@ -127,9 +127,4 @@ export type GetCurrentsParams = z.infer<typeof GetCurrentsSchema>;
 export type GetCurrentPredictionsParams = z.infer<typeof GetCurrentPredictionsSchema>;
 export type GetMeteorologicalDataParams = z.infer<typeof GetMeteorologicalDataSchema>;
 export type GetStationsParams = z.infer<typeof GetStationsSchema>;
-export type GetStationDetailsParams = z.infer<typeof GetStationDetailsSchema>;
-
-// Configuration type
-export interface NoaaConfig {
-  applicationName?: string;
-} 
+export type GetStationDetailsParams = z.infer<typeof GetStationDetailsSchema>; 

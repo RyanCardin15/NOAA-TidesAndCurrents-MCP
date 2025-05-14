@@ -1,75 +1,6 @@
 import SunCalc from 'suncalc';
-import { z } from 'zod';
-
-/**
- * Moon phase names and their approximate ranges
- */
-export enum MoonPhaseName {
-  NEW_MOON = 'New Moon',
-  WAXING_CRESCENT = 'Waxing Crescent',
-  FIRST_QUARTER = 'First Quarter',
-  WAXING_GIBBOUS = 'Waxing Gibbous',
-  FULL_MOON = 'Full Moon',
-  WANING_GIBBOUS = 'Waning Gibbous',
-  LAST_QUARTER = 'Last Quarter',
-  WANING_CRESCENT = 'Waning Crescent'
-}
-
-/**
- * Moon phase information
- */
-export interface MoonPhaseInfo {
-  date: string;
-  phase: number;
-  phaseName: MoonPhaseName;
-  illumination: number;
-  age: number;
-  distance: number;
-  diameter: number;
-  isWaxing: boolean;
-}
-
-/**
- * Parameters for getting moon phase
- */
-export const MoonPhaseParamsSchema = z.object({
-  date: z.string().optional().describe('Date to get moon phase for (YYYY-MM-DD format). Defaults to current date.'),
-  latitude: z.number().min(-90).max(90).optional().describe('Latitude for location-specific calculations'),
-  longitude: z.number().min(-180).max(180).optional().describe('Longitude for location-specific calculations'),
-  format: z.enum(['json', 'text']).optional().describe('Output format (json or text)')
-});
-
-export type MoonPhaseParams = z.infer<typeof MoonPhaseParamsSchema>;
-
-/**
- * Parameters for getting moon phases for a date range
- */
-export const MoonPhasesRangeParamsSchema = z.object({
-  start_date: z.string().describe('Start date (YYYY-MM-DD format)'),
-  end_date: z.string().describe('End date (YYYY-MM-DD format)'),
-  latitude: z.number().min(-90).max(90).optional().describe('Latitude for location-specific calculations'),
-  longitude: z.number().min(-180).max(180).optional().describe('Longitude for location-specific calculations'),
-  format: z.enum(['json', 'text']).optional().describe('Output format (json or text)')
-});
-
-export type MoonPhasesRangeParams = z.infer<typeof MoonPhasesRangeParamsSchema>;
-
-/**
- * Parameters for getting next moon phase
- */
-export const NextMoonPhaseParamsSchema = z.object({
-  phase: z.enum([
-    MoonPhaseName.NEW_MOON,
-    MoonPhaseName.FIRST_QUARTER,
-    MoonPhaseName.FULL_MOON,
-    MoonPhaseName.LAST_QUARTER
-  ]).describe('Moon phase to find'),
-  date: z.string().optional().describe('Starting date (YYYY-MM-DD format). Defaults to current date.'),
-  count: z.number().positive().optional().describe('Number of occurrences to return. Defaults to 1.'),
-  format: z.enum(['json', 'text']).optional().describe('Output format (json or text)')
-});
-
-export type NextMoonPhaseParams = z.infer<typeof NextMoonPhaseParamsSchema>;
+import { MoonPhaseParams, MoonPhasesRangeParams, NextMoonPhaseParams } from '../interfaces/moon.js';
+import { MoonPhaseName, MoonPhaseInfo } from '../types/moon.js';
 
 /**
  * Service for moon phase calculations
@@ -206,23 +137,31 @@ export class MoonPhaseService {
   }
 
   /**
-   * Get the name of the moon phase based on the phase value
+   * Get the moon phase name based on the phase value (0-1)
    * @param phase Phase value (0-1)
    * @returns Moon phase name
    */
   private getMoonPhaseName(phase: number): MoonPhaseName {
     // Normalize phase to 0-1 range
-    phase = phase % 1;
-    if (phase < 0) phase += 1;
+    const normalizedPhase = phase < 0 ? phase + 1 : phase > 1 ? phase - 1 : phase;
     
-    // Determine phase name based on value ranges
-    if (phase < 0.0625 || phase >= 0.9375) return MoonPhaseName.NEW_MOON;
-    if (phase < 0.1875) return MoonPhaseName.WAXING_CRESCENT;
-    if (phase < 0.3125) return MoonPhaseName.FIRST_QUARTER;
-    if (phase < 0.4375) return MoonPhaseName.WAXING_GIBBOUS;
-    if (phase < 0.5625) return MoonPhaseName.FULL_MOON;
-    if (phase < 0.6875) return MoonPhaseName.WANING_GIBBOUS;
-    if (phase < 0.8125) return MoonPhaseName.LAST_QUARTER;
-    return MoonPhaseName.WANING_CRESCENT;
+    // Determine moon phase based on the value
+    if (normalizedPhase < 0.0625 || normalizedPhase >= 0.9375) {
+      return MoonPhaseName.NEW_MOON;
+    } else if (normalizedPhase < 0.1875) {
+      return MoonPhaseName.WAXING_CRESCENT;
+    } else if (normalizedPhase < 0.3125) {
+      return MoonPhaseName.FIRST_QUARTER;
+    } else if (normalizedPhase < 0.4375) {
+      return MoonPhaseName.WAXING_GIBBOUS;
+    } else if (normalizedPhase < 0.5625) {
+      return MoonPhaseName.FULL_MOON;
+    } else if (normalizedPhase < 0.6875) {
+      return MoonPhaseName.WANING_GIBBOUS;
+    } else if (normalizedPhase < 0.8125) {
+      return MoonPhaseName.LAST_QUARTER;
+    } else {
+      return MoonPhaseName.WANING_CRESCENT;
+    }
   }
 } 

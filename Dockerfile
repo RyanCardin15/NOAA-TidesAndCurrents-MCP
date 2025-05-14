@@ -6,14 +6,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --ignore-scripts
 
-# Copy all files
+# Copy source code and build the project
 COPY . .
-
-# Build the project
 RUN npm run build
 
-# Expose the port (default 3000)
-EXPOSE 3000
-
-# Start the server
+# Start the server in stdio mode
 CMD [ "npm", "start" ]

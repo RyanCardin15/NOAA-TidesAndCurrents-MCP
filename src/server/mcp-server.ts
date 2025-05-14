@@ -1,4 +1,4 @@
-import { NoaaService } from './noaa-service.js';
+import { NoaaService } from '../services/noaa-service.js';
 import { ZodSchema } from 'zod';
 import {
   GetWaterLevelsSchema,
@@ -8,7 +8,7 @@ import {
   GetMeteorologicalDataSchema,
   GetStationsSchema,
   GetStationDetailsSchema
-} from './types.js';
+} from '../interfaces/noaa.js';
 
 // MCP Tool type
 interface MCPTool<TParams = any, TResult = any> {
