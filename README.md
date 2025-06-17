@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/ryancardin15-noaa-tidesandcurrents-mcp-badge.png)](https://mseep.ai/app/ryancardin15-noaa-tidesandcurrents-mcp)
+
 # LocalTides MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@RyanCardin15/noaa-tidesandcurrents-mcp)](https://smithery.ai/server/@RyanCardin15/noaa-tidesandcurrents-mcp)
