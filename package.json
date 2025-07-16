@@ -7,9 +7,14 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "start:http": "node dist/index.js --http --port 3000",
+    "start:http:3001": "node dist/index.js --http --port 3001",
+    "start:http:8080": "node dist/index.js --http --port 8080",
     "dev": "ts-node-esm src/index.ts",
+    "dev:http": "ts-node-esm src/index.ts --http --port 3000",
     "test": "vitest run",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "inspector": "npx @modelcontextprotocol/inspector ./dist/index.js"
   },
   "keywords": [
     "noaa",
