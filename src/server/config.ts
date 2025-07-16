@@ -14,11 +14,30 @@ export function createServer() {
 }
 
 /**
- * Start the FastMCP server with fixed stdio transport
+ * Start the FastMCP server with configurable transport
  */
 export function startServer(server: FastMCP) {
-  // Start the server using stdio transport
-  server.start({ 
-    transportType: 'stdio'
-  });
+  // Check command line arguments for transport type
+  const args = process.argv.slice(2);
+  const httpIndex = args.indexOf('--http');
+  const portIndex = args.indexOf('--port');
+  
+  if (httpIndex !== -1) {
+    // HTTP transport mode
+    const port = portIndex !== -1 && args[portIndex + 1] ? parseInt(args[portIndex + 1]) : 3000;
+    console.log(`Starting NOAA MCP server on HTTP port ${port}`);
+    server.start({ 
+      transportType: 'httpStream',
+      httpStream: {
+        endpoint: '/sse',
+        port: port
+      }
+    });
+  } else {
+    // Default stdio transport
+    console.log('Starting NOAA MCP server with stdio transport');
+    server.start({ 
+      transportType: 'stdio'
+    });
+  }
 } 

@@ -1,15 +1,23 @@
 {
-  "name": "noaa-tides-currents-mcp-server",
+  "name": "@ryancardin/noaa-tides-currents-mcp-server",
   "version": "1.0.0",
   "description": "MCP Server that interfaces with NOAA Tides and Currents API using FastMCP",
   "main": "dist/index.js",
+  "bin": {
+    "noaa-mcp": "dist/index.js"
+  },
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "start:http": "node dist/index.js --http --port 3000",
+    "start:http:3001": "node dist/index.js --http --port 3001",
+    "start:http:8080": "node dist/index.js --http --port 8080",
     "dev": "ts-node-esm src/index.ts",
+    "dev:http": "ts-node-esm src/index.ts --http --port 3000",
     "test": "vitest run",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "inspector": "npx @modelcontextprotocol/inspector ./dist/index.js"
   },
   "keywords": [
     "noaa",
@@ -19,7 +27,18 @@
     "fastmcp",
     "api"
   ],
-  "author": "",
+  "author": "Ryan Cardin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyanCardin15/NOAA-Tides-And-Currents-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RyanCardin15/NOAA-Tides-And-Currents-MCP/issues"
+  },
+  "homepage": "https://github.com/RyanCardin15/NOAA-Tides-And-Currents-MCP#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.2",
